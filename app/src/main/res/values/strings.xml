@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">clase_firebase</string>
+    <string name="btnLogin">ingresar</string>
+    <string name="errorLogin">usuario y/o password incorrecto(s)</string>
+</resources>
