@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.annotations.NotNull;
 
 public class Login extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class Login extends AppCompatActivity {
         ));
     }
 
-    private void procesoDeLogin(String correo, String pass){
+    private void procesoDeLogin(@NotNull String correo, String pass){
         if(correo.isEmpty()){
             // mandar un mensaje
             Toast.makeText(this, getString(R.string.errorLogin), Toast.LENGTH_SHORT).show();
