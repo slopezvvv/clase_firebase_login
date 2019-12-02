@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">clase_firebase</string>
+    <string name="hintPublicar">Escriba un mensaje</string>
+    <string name="btnPublicar">Publicar</string>
     <string name="btnLogin">ingresar</string>
+    
+    <string name="errorTextoVacio">Debe escribir un mensaje</string>
     <string name="errorLogin">usuario y/o password incorrecto(s)</string>
 </resources>

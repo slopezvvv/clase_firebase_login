@@ -13,6 +13,7 @@ import com.google.firebase.database.annotations.NotNull;
 
 public class Login extends AppCompatActivity {
 
+    public static String UID;
     private EditText correo, pass;
     private Button ingresar;
 
@@ -25,13 +26,15 @@ public class Login extends AppCompatActivity {
         pass = findViewById(R.id.txtPassword);
         ingresar = findViewById(R.id.btnLogin);
 
-        ingresar.setOnClickListener(v -> procesoDeLogin(
+        ingresar.setOnClickListener(v ->
+            procesoDeLogin(
                 correo.getText().toString(),
                 pass.getText().toString()
-        ));
+            )
+        );
     }
 
-    private void procesoDeLogin(@NotNull String correo, String pass){
+    private void procesoDeLogin(@NotNull String correo, @NotNull String pass){
         if(correo.isEmpty()){
             // mandar un mensaje
             Toast.makeText(this, getString(R.string.errorLogin), Toast.LENGTH_SHORT).show();
@@ -46,6 +49,7 @@ public class Login extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithEmailAndPassword(correo, pass)
         .addOnSuccessListener(auth -> {
+            UID = auth.getUser().getUid();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         })
