@@ -29,8 +29,10 @@ public class DBFirebase {
         refPublicaciones.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot publicaciones : dataSnapshot.getChildren()){
-                    for(DataSnapshot publicacion : publicaciones.getChildren()) {
+                for(DataSnapshot usuario : dataSnapshot.getChildren()){
+
+
+                    for(DataSnapshot publicacion : usuario.getChildren()) {
                         final long fecha = Long.parseLong(String.valueOf(publicacion.getKey()));
                         final String texto = String.valueOf(publicacion.getValue());
 
@@ -53,7 +55,9 @@ public class DBFirebase {
     // Con el UID respectivo al usuario logeado.
     public void agregarPublicacion(Publicacion publicacion){
         Map<String, Object> valoresPublicacion = new HashMap<>();
-        valoresPublicacion.put(String.valueOf(publicacion.getFecha()), publicacion.getValor());
+        valoresPublicacion.put(
+            String.valueOf(publicacion.getFecha()), // Clave fecha
+            publicacion.getValor()); // Texto publicacion
         refPublicaciones.child(Login.UID).updateChildren(valoresPublicacion);
     }
 }
